@@ -32,7 +32,7 @@ mt.__newindex = newcclosure(function(self, key, val)
     if self:IsA("Humanoid") and key == "Health" and val == 0 then
         return
     end
-    if key == "Size" then
+    if self:IsA("BasePart") and key == "Size" and self.Parent == char then
         return
     end
     if key == "Enabled" and self.Name == "randomize" then
@@ -56,16 +56,13 @@ end)
 setreadonly(mt, true)
 
 for _, v in ipairs(char:GetDescendants()) do
-    if v:IsA("LocalScript") then
+    if v:IsA("LocalScript") and v.Name:match("%d+") then
         v.Enabled = false
     end
 end
 
 char.DescendantAdded:Connect(function(v)
-    if v:IsA("LocalScript") then
+    if v:IsA("LocalScript") and v.Name:match("%d+") then
         v.Enabled = false
     end
 end)
-
-game.ReplicatedStorage.Remotes.ChildRemoved:Connect(function() end)
-plr.PlayerGui.ChildAdded:Connect(function() end)

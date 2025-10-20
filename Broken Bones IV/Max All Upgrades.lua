@@ -6,13 +6,13 @@
 
 local functions = game.ReplicatedStorage:WaitForChild("Functions")
 
-_G.breakslevel = 500
-_G.speedlevel = 500
-_G.jumplevel = 500
-_G.sprainslevel = 500
-_G.dislocationslevel = 500
-_G.flightlevel = 500
-_G.fuellevel = 500
+_G.breakslevel = 1000
+_G.speedlevel = 1000
+_G.jumplevel = 1000
+_G.sprainslevel = 1000
+_G.dislocationslevel = 1000
+_G.flightlevel = 1000
+_G.fuellevel = 1000
 
 hookmetamethod(game, "__namecall", newcclosure(function(self, ...)
     local method = getnamecallmethod()
@@ -55,6 +55,3 @@ for _, connection in pairs(getconnections(functions.SendData.OnClientEvent)) do
         end)
     end
 end
-
-
-print("LOADED")

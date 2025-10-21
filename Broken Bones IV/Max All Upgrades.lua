@@ -1,6 +1,6 @@
 --[[
 
-	@DownInDaNang
+	@DownInDaNang - should work after first death
 
 ]]
 

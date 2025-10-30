@@ -1,6 +1,6 @@
 --[[
 
-	@DownInDaNang - default timing vals should work fine
+	Credit : DownInDaNang / Norgumi - default timing vals should work fine
 ]]
 
 

@@ -7,8 +7,8 @@
 local functions = game.ReplicatedStorage:WaitForChild("Functions")
 
 _G.breakslevel = 1000
-_G.speedlevel = 1000
-_G.jumplevel = 1000
+_G.speedlevel = 500
+_G.jumplevel = 500
 _G.sprainslevel = 1000
 _G.dislocationslevel = 1000
 _G.flightlevel = 1000

@@ -1,10 +1,3 @@
---[[
-
-	Credit : DownInDaNang / Norgumi - default timing vals should work fine
-
-]]
-
-
 local rs = game:GetService("ReplicatedStorage")
 local plr = game.Players.LocalPlayer
 local char = plr.Character or plr.CharacterAdded:Wait()

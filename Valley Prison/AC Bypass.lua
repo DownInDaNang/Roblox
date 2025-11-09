@@ -1,4 +1,9 @@
 local RS = game:GetService("ReplicatedStorage")
+local LS = game:GetService("LogService")
+
+for _, conn in getconnections(LS.MessageOut) do
+    conn:Disable()
+end
 
 local Service = filtergc("table", {
     Keys = {"GETACINFO"}

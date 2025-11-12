@@ -1,3 +1,9 @@
+--[[
+    @DownInDaNang - if GETACINFO returns nil you're fucked
+    - added crash bypass (instance spam hook)
+]]
+
+
 local RS = game:GetService("ReplicatedStorage")
 local LS = game:GetService("LogService")
 

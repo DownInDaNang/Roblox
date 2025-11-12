@@ -1,5 +1,5 @@
 --[[
-    - if GETACINFO returns nil you're fucked
+    - if GETACINFO returns nil you're fucked :)
     - added crash bypass (instance spam hook)
 ]]
 

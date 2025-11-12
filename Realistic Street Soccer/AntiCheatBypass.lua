@@ -3,7 +3,7 @@
 	@DownInDaNang
 
 ]]
-
+local newcclosure = newcclosure or function(f) return f end
 local rs = game:GetService("ReplicatedStorage")
 local remote
 
@@ -15,16 +15,10 @@ for _, v in rs:WaitForChild("Remotes"):GetChildren() do
 end
 
 if remote then
-    local mt = getrawmetatable(game)
-    setreadonly(mt, false)
-    local old = mt.__namecall
-    
-    mt.__namecall = newcclosure(function(self, ...)
+	local old do old = hookmetamethod(game, "__namecall", newcclosure(function(self, ...)
         if not checkcaller() and self == remote and getnamecallmethod() == "FireServer" then
             return
         end
         return old(self, ...)
-    end)
-    
-    setreadonly(mt, true)
+	end) end
 end

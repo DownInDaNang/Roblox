@@ -82,4 +82,4 @@ if Players.LocalPlayer.Character then
     Players.LocalPlayer.Character.DescendantAdded:Connect(function() end)
 end
 
-print("skibidi")
+print("skibidi they say")

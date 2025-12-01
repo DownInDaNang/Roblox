@@ -3,7 +3,7 @@
     Wrote by: @vexify
     - obfuscator broke so i just minified it manually
     - temporary open source release
-	  - use a lua beautifier if u wanna read this properly
+	- use a lua beautifier if u wanna read this properly
  
 ]]
 

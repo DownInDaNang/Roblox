@@ -8,7 +8,7 @@
 ]]
 
 local a=loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Luna-Interface-Suite/refs/heads/master/source.lua",true))()
-local b=a:CreateWindow({Name="Pulse",Subtitle="Basketball Stars 3 | Last updated: 12/1/25 | Expiration : 12/30/25 (will renew)",LogoID=nil,LoadingEnabled=true,LoadingTitle="Pulse | Basketball Stars 3",LoadingSubtitle="Last Update: 12/1/25",ConfigSettings={RootFolder=nil,ConfigFolder="pulse_configs_basketball_stars_3_lua_v1_0_3_2025_12_01"},KeySystem=false})
+local b=a:CreateWindow({Name="Pulse",Subtitle="Basketball Stars 3 | Last updated: 12/1/25 | Expiration : nil (will renew)",LogoID=nil,LoadingEnabled=true,LoadingTitle="Pulse | Basketball Stars 3",LoadingSubtitle="Last Update: 12/1/25",ConfigSettings={RootFolder=nil,ConfigFolder="pulse_configs_basketball_stars_3_lua_v1_0_3_2025_12_01"},KeySystem=false})
 local c=b:CreateTab({Name="Main",Icon="deck",ImageSource="Material",ShowTitle=true})
 local d=b:CreateTab({Name="Information",Icon="info",ImageSource="Material",ShowTitle=true})
 local e=b:CreateTab({Name="Config",Icon="settings",ImageSource="Material",ShowTitle=true})

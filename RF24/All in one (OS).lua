@@ -10,6 +10,10 @@ local t = w:CreateTab({Name = "Main"})
 
 local pp = 5
 local ph = 5
+local kp = 115
+local kh = 28
+local tp = 60
+local th = 25
 local os1, os2, os3, os4
 
 t:Checkbox({
@@ -42,18 +46,27 @@ t:Checkbox({
     end
 })
 
-t:Checkbox({
-    Label = "Always Full Power (throw)",
-    Value = false,
+t:Separator()
+
+t:Slider({
+    Label = "Kick Power",
+    Format = "%.1f",
+    Value = 115,
+    MinValue = 0,
+    MaxValue = 200,
     Callback = function(s, v)
-        local m = require(p.PlayerScripts.mechanics.gk.binds.throw)
-        if v then
-            m.minPower = 100
-            m.minHeight = 50
-        else
-            m.minPower = 30
-            m.minHeight = -10
-        end
+        kp = v
+    end
+})
+
+t:Slider({
+    Label = "Kick Height",
+    Format = "%.1f",
+    Value = 28,
+    MinValue = 0,
+    MaxValue = 50,
+    Callback = function(s, v)
+        kh = v
     end
 })
 
@@ -63,11 +76,50 @@ t:Checkbox({
     Callback = function(s, v)
         local m = require(p.PlayerScripts.mechanics.kick.binds.kick)
         if v then
-            m.minPower = 115
-            m.minHeight = 28
+            m.minPower = kp
+            m.minHeight = kh
         else
             m.minPower = 0
             m.minHeight = 0
+        end
+    end
+})
+
+t:Separator()
+
+t:Slider({
+    Label = "Throw Power",
+    Format = "%.1f",
+    Value = 60,
+    MinValue = 30,
+    MaxValue = 150,
+    Callback = function(s, v)
+        tp = v
+    end
+})
+
+t:Slider({
+    Label = "Throw Height",
+    Format = "%.1f",
+    Value = 25,
+    MinValue = -10,
+    MaxValue = 50,
+    Callback = function(s, v)
+        th = v
+    end
+})
+
+t:Checkbox({
+    Label = "Always Full Power (throw)",
+    Value = false,
+    Callback = function(s, v)
+        local m = require(p.PlayerScripts.mechanics.gk.binds.throw)
+        if v then
+            m.minPower = tp
+            m.minHeight = th
+        else
+            m.minPower = 30
+            m.minHeight = -10
         end
     end
 })

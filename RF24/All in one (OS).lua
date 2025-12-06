@@ -14,7 +14,7 @@ local kp = 115
 local kh = 28
 local tp = 60
 local th = 25
-local os1, os2, os3, os4, os5
+local os1, os2, os3, os4, os5, os6
 
 t:Checkbox({
     Label = "Infinite Stamina",
@@ -294,6 +294,27 @@ t:Checkbox({
         else
             if os3 then
                 m.inputBegan = os3
+            end
+        end
+    end
+})
+
+t:Checkbox({
+    Label = "Remove Power Shot Cooldown",
+    Value = false,
+    Callback = function(s, v)
+        local m = require(p.PlayerScripts.mechanics.kick.binds["power shot"])
+        if v then
+            if not os6 then
+                os6 = m.inputBegan
+            end
+            m.inputBegan = function(self, root, dir)
+                self.using = false
+                return os6(self, root, dir)
+            end
+        else
+            if os6 then
+                m.inputBegan = os6
             end
         end
     end

@@ -14,7 +14,7 @@ local kp = 115
 local kh = 28
 local tp = 60
 local th = 25
-local os1, os2, os3, os4
+local os1, os2, os3, os4, os5
 
 t:Checkbox({
     Label = "Infinite Stamina",
@@ -120,6 +120,29 @@ t:Checkbox({
         else
             m.minPower = 30
             m.minHeight = -10
+        end
+    end
+})
+
+t:Checkbox({
+    Label = "Throw Without Ball/GK Check",
+    Value = false,
+    Callback = function(s, v)
+        local m = require(p.PlayerScripts.mechanics.gk.binds.throw)
+        if v then
+            if not os5 then
+                os5 = m.inputBegan
+            end
+            m.inputBegan = function(self, root)
+                if self.using then
+                    return
+                end
+                return os5(self, root)
+            end
+        else
+            if os5 then
+                m.inputBegan = os5
+            end
         end
     end
 })

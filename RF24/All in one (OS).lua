@@ -43,6 +43,22 @@ t:Checkbox({
 })
 
 t:Checkbox({
+    Label = "Always Full Power (throw)",
+    Value = false,
+    Callback = function(s, v)
+        local m = require(p.PlayerScripts.mechanics.gk.binds.throw)
+        if v then
+            m.minPower = 60
+            m.minHeight = 25
+        else
+            m.minPower = 30
+            m.minHeight = -10
+        end
+    end
+})
+
+
+t:Checkbox({
     Label = "Always Full Power (kicks only)",
     Value = false,
     Callback = function(s, v)

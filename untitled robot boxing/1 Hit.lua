@@ -3,7 +3,7 @@
 local rs = game:GetService("ReplicatedStorage")
 local input = require(rs:WaitForChild("RobotInput"))
 
-local function skibidi(cfg)
+local function JewsDidIt(cfg)
     local dmg = 9e9
     
     for key in pairs(cfg.attackDMG) do
@@ -27,6 +27,6 @@ local orig = input.GetConfigForBot
 
 input.GetConfigForBot = function(bot)
     local cfg = orig(bot)
-    skibidi(cfg)
+    JewsDidIt(cfg)
     return cfg
 end

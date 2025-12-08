@@ -1,4 +1,4 @@
--- @DownInDaNang (some things still detected)
+-- @DownInDaNang (minor things still detected, use at your own will)
 
 local RS = game:GetService("ReplicatedStorage")
 local Player = game:GetService("Players").LocalPlayer

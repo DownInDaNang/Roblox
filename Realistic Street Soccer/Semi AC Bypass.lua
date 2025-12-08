@@ -1,4 +1,4 @@
--- @DownInDaNang
+-- @DownInDaNang (some things still detected)
 
 local RS = game:GetService("ReplicatedStorage")
 local Player = game:GetService("Players").LocalPlayer
@@ -40,13 +40,13 @@ local function Init()
         end
     end
     
-    warn("Complete :)")
+    warn("skibidi :)")
 end
 
 Init()
 
 Player.CharacterAdded:Connect(function()
-    warn("You resetted your character. Please wait 5 secs before exploiting cornball")
+    warn("You resetted your character, wait 5 secs before exploiting again")
     task.wait(5)
     Init()
 end)

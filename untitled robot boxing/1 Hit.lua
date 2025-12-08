@@ -4,7 +4,7 @@ local rs = game:GetService("ReplicatedStorage")
 local input = require(rs:WaitForChild("RobotInput"))
 
 local function skibidi(cfg)
-    local dmg = 999
+    local dmg = 9e9
     
     for key in pairs(cfg.attackDMG) do
         cfg.attackDMG[key] = dmg

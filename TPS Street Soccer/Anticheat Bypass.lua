@@ -6,11 +6,11 @@ for i, v in getgc() do
         if table.find(c, "Asset Editing") or table.find(c, 23) and table.find(c, 50) and table.find(c, 65) then
             for x = 1, #c do
                 if c[x] == 23 then
-                    debug.setconstant(v, x, 999)
+                    debug.setconstant(v, x, 9e9)
                 elseif c[x] == 50 then
-                    debug.setconstant(v, x, 999)
+                    debug.setconstant(v, x, 9e9)
                 elseif c[x] == 65 then
-                    debug.setconstant(v, x, 999)
+                    debug.setconstant(v, x, 9e9)
                 end
             end
         end

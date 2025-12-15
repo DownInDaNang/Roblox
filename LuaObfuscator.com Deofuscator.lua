@@ -53,6 +53,8 @@ local function deof(url)
     for v in out:gmatch("(v%d+)%s*=%s*game%.Players") do varMap[v] = "Players" end
     for v in out:gmatch("(v%d+)%s*=%s*game%.Workspace") do varMap[v] = "Workspace" end
     for v in out:gmatch("(v%d+)%s*=%s*game%.ReplicatedStorage") do varMap[v] = "ReplicatedStorage" end
+    for v in out:gmatch("(v%d+)%s*=%s*getrawmetatable") do varMap[v] = "mt" end
+    for v in out:gmatch("(v%d+)%s*=%s*mt%.__namecall") do varMap[v] = "old" end
     for v in out:gmatch("(v%d+)%s*=%s*[%w_]+%.LocalPlayer") do varMap[v] = "LocalPlayer" end
     for v in out:gmatch("(v%d+)%s*=%s*LocalPlayer%.Character") do varMap[v] = "Character" end
     for v in out:gmatch("(v%d+)%s*=%s*Character:FindFirstChild") do varMap[v] = "Part" end
@@ -69,7 +71,7 @@ local function deof(url)
         out = out:gsub("([^%w])" .. old .. "([^%w])", "%1" .. new .. "%2")
     end
     
-    local codeStart = out:find("local%s+%w+%s*=%s*game") or out:find("game") or out:find("print")
+    local codeStart = out:find("local%s+%w+%s*=%s*getrawmetatable") or out:find("local%s+%w+%s*=%s*game") or out:find("game:") or out:find("print")
     if codeStart then
         out = out:sub(codeStart)
     end

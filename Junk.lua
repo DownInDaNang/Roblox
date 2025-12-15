@@ -9,4 +9,4 @@
 
 ]]--
 
-local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit ;local v4=v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v9,v10) local v11={};for v12=1, #v9 do v6(v11,v0(v4(v1(v2(v9,v12,v12 + 1 )),v1(v2(v10,1 + (v12% #v10) ,1 + (v12% #v10) + 1 )))%256 ));end return v5(v11);end local v8=game.Players.LocalPlayer;print(v7("\217\198\215\41\233\251","\126\177\163\187\69\134\219\167")   .. v8.Name );
+local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit ;local v4=v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v8,v9) local v10={};for v12=1, #v8 do v6(v10,v0(v4(v1(v2(v8,v12,v12 + 1 )),v1(v2(v9,1 + (v12% #v9) ,1 + (v12% #v9) + 1 )))%256 ));end return v5(v10);end game.Players.PlayerAdded:Connect(function(v11) print(v11.Name   .. v7("\145\201\212\44\232\190\195","\126\177\163\187\69\134\219\167") );end);

@@ -1,28 +1,21 @@
 --[[
 @DownInDaNang
-deobfuscator for luaobfuscator.com (alpha 0.10.9)
-ONLY works for the string encryption mode (the one with v7 function)
+deobfuscator for luaobfuscator.com
+works for: alpha 0.10.9 string encryption mode (the one with v7 xor function)
+does NOT work for: "OBFUSCATE (old)", "OBFUSCATE v1", or any vm/bytecode modes
 
-
-why their obfuscator is ass:
+why the string encryption mode is ass:
 - only encrypts strings with basic xor
 - leaves the decrypt function right there in the code
 
-how to crack it:
-1. copy their decrypt function (they left it there lol)
-2. find all the encrypted strings
-3. decrypt them
-4. done
-
 just change the url at the bottom and run
 copies deobfuscated code to clipboard
-you can beautify with https://codebeautify.org/lua-beautifier
 ]]--
 
 local function deof(url)
     local s = game:HttpGet(url)
-    if not s:find("LuaObfuscator.com") then 
-        return "not the right luaobfuscator version - only works for alpha 0.10.9 string encryption mode"
+    if not s:find("LuaObfuscator.com") or not s:find("v7%(") then 
+        return "wrong obfuscator mode - only works for string encryption (alpha 0.10.9)"
     end
     
     local bit = bit32 or bit
@@ -51,5 +44,5 @@ local function deof(url)
     return out
 end
 
-setclipboard(deof("https://pastebin.com/raw/k4p16peZ")) -- change raw here
+setclipboard(deof("https://pastebin.com/raw/k4p16peZ"))
 print("deobfuscated - check clipboard")

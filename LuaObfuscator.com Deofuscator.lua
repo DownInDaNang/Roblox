@@ -9,7 +9,7 @@ how to know if it works on ur script:
 - NO "LOL!" hex string anywhere (LOL! = their bytecode signature)
 
 if u see "LOL!" in the code = wont work, thats a different mode (vm/bytecode)
-this only cracks the basic string encryption mode
+this only cracks the basic string encryption
 ]]--
 
 local function deof(url)

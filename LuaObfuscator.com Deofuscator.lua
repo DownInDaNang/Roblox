@@ -21,7 +21,7 @@ you can beautify with https://codebeautify.org/lua-beautifier
 
 local function deof(url)
     local s = game:HttpGet(url)
-    if not s:find("LuaObfuscator.com") or not s:find("v7%(") then 
+    if not s:find("LuaObfuscator.com") then 
         return "not the right luaobfuscator version - only works for alpha 0.10.9 string encryption mode"
     end
     

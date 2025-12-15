@@ -1,6 +1,8 @@
 --[[
 @DownInDaNang
-ONLY works for luaobfuscator.com scripts
+deobfuscator for luaobfuscator.com (alpha 0.10.9)
+ONLY works for the string encryption mode (the one with v7 function)
+
 
 why their obfuscator is ass:
 - only encrypts strings with basic xor
@@ -19,7 +21,9 @@ you can beautify with https://codebeautify.org/lua-beautifier
 
 local function deof(url)
     local s = game:HttpGet(url)
-    if not s:find("LuaObfuscator.com") then return "not a luaobfuscator.com script" end
+    if not s:find("LuaObfuscator.com") or not s:find("v7%(") then 
+        return "not the right luaobfuscator version - only works for alpha 0.10.9 string encryption mode"
+    end
     
     local bit = bit32 or bit
     local function v7(a, b)
@@ -47,5 +51,5 @@ local function deof(url)
     return out
 end
 
-setclipboard(deof("https://pastebin.com/raw/k4p16peZ"))
-print("deobfuscated - copied to clip")
+setclipboard(deof("https://pastebin.com/raw/k4p16peZ")) -- change raw here
+print("deobfuscated - check clipboard")

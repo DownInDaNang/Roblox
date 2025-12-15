@@ -1,21 +1,26 @@
 --[[
 @DownInDaNang
 deobfuscator for luaobfuscator.com
-works for: alpha 0.10.9 string encryption mode (the one with v7 xor function)
-does NOT work for: "OBFUSCATE (old)", "OBFUSCATE v1", or any vm/bytecode modes
+ONLY works for "Chaotic Good" mode
 
-why the string encryption mode is ass:
-- only encrypts strings with basic xor
-- leaves the decrypt function right there in the code
+how to know if it works on ur script:
+- obfuscated script has "local v0=string.char" at top
+- has a function called "v7" 
+- NO "LOL!" hex string anywhere (LOL! = their bytecode signature)
 
-just change the url at the bottom and run
-copies deobfuscated code to clipboard
+if u see "LOL!" in the code = wont work, thats a different mode (vm/bytecode)
+this only cracks the basic string encryption mode
 ]]--
 
 local function deof(url)
     local s = game:HttpGet(url)
+    
+    if s:find("LOL!") then
+        return "wont work - script has LOL! bytecode. only works for chaotic good mode (string encryption)"
+    end
+    
     if not s:find("LuaObfuscator.com") or not s:find("v7%(") then 
-        return "wrong obfuscator mode - only works for string encryption (alpha 0.10.9)"
+        return "wrong mode - need chaotic good (the one with v7 function)"
     end
     
     local bit = bit32 or bit
@@ -36,7 +41,30 @@ local function deof(url)
         end
     end
     
-    out = out:gsub("local v0=string%.char;.-return v5%(v30%);end ", ""):gsub("%-%-%[%[.-%]%]%-%-\n", "")
+    local varMap = {}
+    for varName, value in out:gmatch("local%s+(v%d+)%s*=%s*(.-)[\n;]") do
+        local newName = varName
+        if value:find("game%.Players") then
+            newName = "Players"
+        elseif value:find("%.LocalPlayer") then
+            newName = "LocalPlayer"
+        elseif value:find("game:GetService") then
+            local service = value:match('"(.-)"')
+            if service then newName = service end
+        end
+        varMap[varName] = newName
+    end
+    
+    for old, new in pairs(varMap) do
+        out = out:gsub("([^%w])" .. old .. "([^%w])", "%1" .. new .. "%2")
+    end
+    
+    local codeStart = out:find("local%s+%w+%s*=%s*game") or out:find("print") or out:find("game:")
+    if codeStart then
+        out = out:sub(codeStart)
+    end
+    
+    out = out:gsub("%-%-%[%[.-%]%]%-%-", "")
     out = out:gsub("%d+ %- %(%d+%)", function(x) return loadstring("return " .. x)() end)
     out = out:gsub("%d+ %+ %d+", function(x) return loadstring("return " .. x)() end)
     out = out:gsub("%d+ %- %d+", function(x) return loadstring("return " .. x)() end)
@@ -44,5 +72,5 @@ local function deof(url)
     return out
 end
 
-setclipboard(deof("https://pastebin.com/raw/k4p16peZ"))
-print("deobfuscated - copied")
+setclipboard(deof("https://pastebin.com/raw/k4p16peZ")) -- replace link here (MUST BE A RAW)
+print("done - copied")

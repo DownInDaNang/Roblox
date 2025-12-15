@@ -42,24 +42,34 @@ local function deof(url)
     end
     
     local varMap = {}
-    for varName, value in out:gmatch("local%s+(v%d+)%s*=%s*(.-)[\n;]") do
-        local newName = varName
-        if value:find("game%.Players") then
-            newName = "Players"
-        elseif value:find("%.LocalPlayer") then
-            newName = "LocalPlayer"
-        elseif value:find("game:GetService") then
-            local service = value:match('"(.-)"')
-            if service then newName = service end
-        end
-        varMap[varName] = newName
-    end
     
+    -- services
+    for v in out:gmatch("(v%d+)%s*=%s*game:GetService%s*%(%s*\"Players\"%s*%)") do varMap[v] = "Players" end
+    for v in out:gmatch("(v%d+)%s*=%s*game:GetService%s*%(%s*\"Workspace\"%s*%)") do varMap[v] = "Workspace" end
+    for v in out:gmatch("(v%d+)%s*=%s*game:GetService%s*%(%s*\"ReplicatedStorage\"%s*%)") do varMap[v] = "ReplicatedStorage" end
+    for v in out:gmatch("(v%d+)%s*=%s*game:GetService%s*%(%s*\"RunService\"%s*%)") do varMap[v] = "RunService" end
+    for v in out:gmatch("(v%d+)%s*=%s*game:GetService%s*%(%s*\"UserInputService\"%s*%)") do varMap[v] = "UserInputService" end
+    for v in out:gmatch("(v%d+)%s*=%s*game:GetService%s*%(%s*\"TweenService\"%s*%)") do varMap[v] = "TweenService" end
+    for v in out:gmatch("(v%d+)%s*=%s*game:GetService%s*%(%s*\"HttpService\"%s*%)") do varMap[v] = "HttpService" end
+    for v in out:gmatch("(v%d+)%s*=%s*game%.Players") do varMap[v] = "Players" end
+    for v in out:gmatch("(v%d+)%s*=%s*game%.Workspace") do varMap[v] = "Workspace" end
+    for v in out:gmatch("(v%d+)%s*=%s*game%.ReplicatedStorage") do varMap[v] = "ReplicatedStorage" end
+    for v in out:gmatch("(v%d+)%s*=%s*[%w_]+%.LocalPlayer") do varMap[v] = "LocalPlayer" end
+    for v in out:gmatch("(v%d+)%s*=%s*LocalPlayer%.Character") do varMap[v] = "Character" end
+    for v in out:gmatch("(v%d+)%s*=%s*Character:FindFirstChild") do varMap[v] = "Part" end
+    for v in out:gmatch("(v%d+)%s*=%s*Character:WaitForChild") do varMap[v] = "Part" end
+    for v in out:gmatch("(v%d+)%s*=%s*Instance%.new%s*%(%s*\"RemoteEvent") do varMap[v] = "RemoteEvent" end
+    for v in out:gmatch("(v%d+)%s*=%s*Instance%.new%s*%(%s*\"RemoteFunction") do varMap[v] = "RemoteFunction" end
+    for v in out:gmatch("(v%d+)%s*=%s*Instance%.new%s*%(%s*\"BindableEvent") do varMap[v] = "BindableEvent" end
+    for v in out:gmatch("(v%d+)%s*=%s*Instance%.new%s*%(%s*\"Part") do varMap[v] = "Part" end
+    for v in out:gmatch("(v%d+)%s*=%s*Instance%.new") do if not varMap[v] then varMap[v] = "Instance" end end
+    for v in out:gmatch("function%s*%((v%d+)%)") do if not varMap[v] then varMap[v] = "arg" end end
+    for v in out:gmatch("Connect%s*%(%s*function%s*%((v%d+)%)") do if not varMap[v] then varMap[v] = "player" end end
     for old, new in pairs(varMap) do
         out = out:gsub("([^%w])" .. old .. "([^%w])", "%1" .. new .. "%2")
     end
     
-    local codeStart = out:find("local%s+%w+%s*=%s*game") or out:find("print") or out:find("game:")
+    local codeStart = out:find("local%s+%w+%s*=%s*game") or out:find("game") or out:find("print")
     if codeStart then
         out = out:sub(codeStart)
     end
@@ -72,5 +82,5 @@ local function deof(url)
     return out
 end
 
-setclipboard(deof("https://pastebin.com/raw/k4p16peZ")) -- replace link here (MUST BE A RAW)
-print("done - copied")
+setclipboard(deof("https://pastebin.com/raw/k4p16peZ")) -- link here (MUST BE A RAW)
+print("done - copied") 

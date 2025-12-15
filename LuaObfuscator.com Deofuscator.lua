@@ -47,4 +47,4 @@ local function deof(url)
 end
 
 setclipboard(deof("https://pastebin.com/raw/k4p16peZ"))
-print("deobfuscated - check clipboard")
+print("deobfuscated - copied to clip")

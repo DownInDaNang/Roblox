@@ -14,6 +14,7 @@ how to crack it:
 
 just change the url at the bottom and run
 copies deobfuscated code to clipboard
+you can beautify with https://codebeautify.org/lua-beautifier
 ]]--
 
 local function deof(url)

@@ -1,90 +1,107 @@
 --[[
-MoonVeil Obfuscator - Tips to Deobfuscate It
----------------------------------------------------
+MoonVeil Obfuscator v1.4.5 - Tips to Deobfuscate It
+--------------------------------------------------------
 
-i spent way too long on this shit and here's what i found:
+spent way too much time on this and here's what works on all moonveil scripts:
 
-1. STRING DECRYPTION (Aa function)
-   so basically the string decoder uses XOR but they wrapped it in some confusing state machine bs
+1. STRING DECRYPTION PATTERN (always present)
+   every moonveil script has XOR string decoder
    
-   how it works:
-   - takes two encrypted strings 
-   - XORs first one with 3696, second with 52399
-   - uses lookup table F[] to cache stuff
-   - loops through chars using (od-34) offset and rotates the key
-   - exits when _c hits 31377
+   how to find it:
+   - search for "bit32.bxor" or "bit32 .bxor" in the script
+   - look for function with 2 string parameters
+   - will have lines like: string.char(string.byte(string.byte(...)))
+   - uses repeat/until or while loops with state machine
+   - example pattern: function(param1,param2)local ...repeat if _c>=... then...
    
-   main decode line:
-   Qa=Qa..string.char(string.byte(string.byte(Kc,(od-34)+1),string.byte(m,(od-34)%#m+1)))
-   
-   just grab this function and use it to decode all the encrypted strings
-   tested it: Aa('\246MM\236WX', '\133\57?') = "string"
+   once found, copy the whole function and use it to decode strings
+   test it on encrypted strings in the script to make sure it works
 
-2. BYTECODE CHAIN  
-   real script is hidden in base64 at the end, gets processed like this:
+2. FINDING ENCRYPTED STRINGS
+   look for patterns like:
+   - Aa('encrypted','key') 
+   - Ff('encrypted','key')
+   - [functionname]('string1','string2')
    
-   base64 -> Ve() -> Ra() -> qf() -> hb()
+   the encrypted strings look like gibberish with special chars
+   example: '\246MM\236WX', '\133\57?'
    
-   - Ve() is base64 decoder with custom alphabet
-   - Ra() sets up VM environment 
-   - qf() parses bytecode, uses Bd() to read bytes
-   - hb() executes instructions in massive state machine
-   
-   bytecode aint standard luau. header starts: 8A 82 86 65 51 00 1A 81...
-   thats moonveil's custom format
+   use your extracted decoder to turn these into readable text
 
-3. STRING DECOMPRESSION (ib function)
-   after bytecode gets parsed, strings get decompressed with LZ77
+3. VM PROCESSING CHAIN (structure always same)
+   every script hides real code in base64 at the very end
    
-   - sliding window compression
-   - back refs with se_(kb,Ze,Ze+Dc-1) 
-   - length = xc(mf,(af-1))+3
-   - builds dictionary while going
+   how to find the chain:
+   - scroll to bottom of script, look for long base64 string
+   - base64 starts after something like Ve' or lb' 
+   - trace backwards to find the processing functions
+   - pattern: return [function]([decoder]'base64string...')
    
-   your original script text is stored here compressed
+   the chain always goes: base64 -> decoder -> VM setup -> parser -> executor
+   function names change but you can trace the calls
 
-4. VM INSTRUCTIONS
-   qf() reads instructions like:
-   - reads bytes with Bd(Aa('G','\5'),sf,qa) 
-   - bit manipulation to get opcode/operands
-   - state machine with tons of jumps
-   - exits at W==45318
-   
-   instructions got:
-   - opcode in lower bits
-   - register/constant stuff in upper bits
-   - some ref string pools
+4. BASE64 PAYLOAD LOCATION
+   always at the very end of script, looks like:
+   - ends with ')end)()(...)' 
+   - before that is long string of random letters/numbers
+   - starts with something like Ve'ioKGZVEA... or lb'2tLWaW1g...
+   - this contains your original script compressed
 
-5. MEMORY BULLSHIT
-   every time i tried running it live = table overflow errors
-   might be protection or just VM making huge tables
+5. STRING DECOMPRESSION FUNCTION
+   look for function that:
+   - has sliding window logic with array operations
+   - does bit operations like: bit_operation(value,5) or similar
+   - builds strings character by character
+   - has cache/dictionary building
+   - example pattern: while pos<=#input do...array operations...string building
    
-   what happens:
-   - creates massive tables during execution
-   - getgc() and debug functions crash 
-   - only static analysis works
+   this is what decompresses your original script text
+
+6. TABLE OVERFLOW (haven't figured out wat this is)
+   happens when you try to run any moonveil script (atleast on my end)
    
-   solution: grab functions statically, make your own decoder
-
-6. WHAT I GOT WORKING
-   managed to:
-   - extract Aa string decoder
-   - decode all encrypted names (string, unpack, bit32, etc)
-   - find VM structure and bytecode format
-   - locate compression functions
+   what you'll see:
+   - "table overflow" error message
+   - crashes when using getgc() or debug functions
+   - happens every time you execute the script
    
-   couldnt:
-   - get original script (your print thing)
-   - do full live analysis cuz memory issues
-   - reverse complete VM instruction set
+   solution: never execute, only read the source code statically
 
-HOW TO DEOBFUSCATE:
-1. grab Aa function, decode strings first
-2. find base64 at end (starts with Ve')
-3. build custom bytecode parser from qf structure  
-4. handle LZ77 decompression for strings
-5. dont execute anything - static only
+7. VARIABLE PATTERNS TO LOOK FOR
+   moonveil always uses:
+   - single letter variables: a,b,c,x,y,z etc
+   - random short names: qa,mb,fd,Te etc  
+   - numbered arrays/tables with weird indices
+   - functions with confusing nested calls
+   
+   but the core logic patterns stay same
 
-string layer ez but VM bytecode needs real work
-most ppl gonna get stuck at bytecode part 
+8. OBFUSCATION LAYERS (same order always)
+   layer 1: string encryption - find XOR decoder, easy to break
+   layer 2: base64 encoding - find base64 string, easy to decode  
+   layer 3: bytecode VM - hard part, need to reverse parser
+   layer 4: LZ77 compression - doable if you get VM working
+
+HOW TO ACTUALLY DO IT:
+1. open, search for "bit32.bxor" to find string decoder
+2. copy that whole function, test it on encrypted strings in script
+3. use decoder to replace all encrypted strings with readable text
+4. scroll to bottom, find the base64 payload 
+5. trace the function calls to understand VM chain
+6. if you want original script, need to reverse the bytecode parser (hard)
+
+SPECIFIC THINGS THAT CHANGE PER SCRIPT:
+- function names (Aa vs Ff vs whatever)
+- XOR constants (different numbers each script)
+- variable names 
+- base64 decoder function name
+
+THINGS THAT NEVER CHANGE:
+- XOR method for strings
+- base64 -> VM -> parser chain structure  
+- LZ77 decompression algorithm
+- table overflow when executed
+- layer order and types
+
+works on all moonveil v1.4.5, just gotta find the right functions
 ]]--

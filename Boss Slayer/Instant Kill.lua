@@ -9,7 +9,6 @@ game:GetService("RunService").Heartbeat:Connect(function()
             for i = 1, 5 do
                 for _, mob in pairs(workspace.MobSpawns[i].Mobs:GetChildren()) do
                     if mob:FindFirstChild("HumanoidRootPart") and mob:FindFirstChild("Humanoid") and (player.Character.HumanoidRootPart.Position - mob.HumanoidRootPart.Position).magnitude < range then
-                        mob.Humanoid.Health = 0
                         game.ReplicatedStorage.Attack:FireServer(mob)
                     end
                 end
@@ -20,7 +19,6 @@ game:GetService("RunService").Heartbeat:Connect(function()
             for i = 1, 2 do
                 for _, mob in pairs(workspace.BossRoom1[i].Mobs:GetChildren()) do
                     if mob:FindFirstChild("HumanoidRootPart") and mob:FindFirstChild("Humanoid") and (player.Character.HumanoidRootPart.Position - mob.HumanoidRootPart.Position).magnitude < range then
-                        mob.Humanoid.Health = 0
                         game.ReplicatedStorage.Attack:FireServer(mob)
                     end
                 end

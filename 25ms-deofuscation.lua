@@ -1,5 +1,5 @@
 --[[
-25ms Obfuscator Deobfuscation Guide ---- @VZion4
+25ms Obfuscator Deobfuscation Guide ---- By @VZion4
 -----------------------------------
 
 spent way too long reversing this shit, here's everything i found:

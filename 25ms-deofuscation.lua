@@ -129,6 +129,4 @@ example of what you'll find:
 - encrypted: `\b\233W\194` with key 7714410583112 = "ball"  
 - encrypted: `wyR\235` with key 18114372530594 = "Head"
 
-once you decrypt everything, you can see what the script actually does
-in our case it was a football auto-goal hack that curves the ball into goals
 ]]--

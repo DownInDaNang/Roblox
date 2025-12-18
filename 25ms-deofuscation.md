@@ -37,7 +37,7 @@ Now search `getgc(true)` for tables with exactly 256 entries
 The right table has single characters: `table[33] = "!"`, `table[65] = "A"`, etc
 Might find multiple candidates, test each one until decryption works
 
-## Step 2: Reverse engineer their decryption system
+## Step 2: their decryption system
 Copy their `A()` function exactly - it's a complex pseudo-random generator
 Copy their `R()` function exactly - it uses `A()` + character table
 Don't try to simplify or "improve" it, just steal their exact code

@@ -1,8 +1,8 @@
--- @DownInDaNang
+-- Don't use the old version, this is the new one
 
 local RS = game:GetService("ReplicatedStorage")
-local Log = game:GetService("LogService")
 local Players = game:GetService("Players")
+local Log = game:GetService("LogService")
 
 local BAC = RS:WaitForChild("RemoteEvents"):WaitForChild("Sanity"):WaitForChild("BAC")
 
@@ -17,35 +17,30 @@ end)
 for i, v in getgc() do
     if typeof(v) == "function" and islclosure(v) then
         local consts = debug.getconstants(v)
-        if table.find(consts, "BodyGyro") or table.find(consts, "BodyVelocity") or table.find(consts, "BodyThrust") then
-            for idx = 1, #debug.getupvalues(v) do
-                debug.setupvalue(v, idx, function() end)
-            end
-        end
-        if table.find(consts, "Tampering") or table.find(consts, "Modified Roblox Files") then
-            for idx = 1, #debug.getupvalues(v) do
-                debug.setupvalue(v, idx, function() end)
-            end
-        end
-        if table.find(consts, "Critical Walkspeed Hook") or table.find(consts, "Possible Script Injection!") or table.find(consts, "RBXConnection Stopped") or table.find(consts, "RBXConnection Suspended") or table.find(consts, "CoreGui Overflow Detection!") or table.find(consts, "Solora Detected!") or table.find(consts, "Emulator Detected!") or table.find(consts, "Remote Spy!") or table.find(consts, "Instance added to nil") then
-            for idx = 1, #debug.getupvalues(v) do
-                debug.setupvalue(v, idx, function() end)
-            end
-        end
-        if table.find(consts, "VirtualInputManager") or table.find(consts, "VirtualUser") or table.find(consts, "MCR") then
-            for idx = 1, #debug.getupvalues(v) do
-                if typeof(debug.getupvalue(v, idx)) == "function" then
+        
+        if table.find(consts, "FrogWasHere") then
+            local upvals = debug.getupvalues(v)
+            if #upvals == 7 then
+                for idx = 1, 7 do
                     debug.setupvalue(v, idx, function() end)
                 end
+            elseif #upvals == 3 then
+                debug.setupvalue(v, 1, function() end)
             end
         end
-        if table.find(consts, "FakeIndex") or table.find(consts, "Namecall Detected") then
-            for idx, const in consts do
-                if typeof(const) == "string" then
-                    debug.setconstant(v, idx, "")
-                end
-            end
+        
+        if table.find(consts, "BodyGyro") or table.find(consts, "BodyVelocity") or table.find(consts, "BodyThrust") then
+            hookfunction(v, function() end)
         end
+        
+        if table.find(consts, "Critical Walkspeed Hook") or table.find(consts, "Possible Script Injection!") or table.find(consts, "RBXConnection Stopped") or table.find(consts, "RBXConnection Suspended") then
+            hookfunction(v, function() end)
+        end
+        
+        if table.find(consts, "VirtualInputManager") or table.find(consts, "VirtualUser") or table.find(consts, "MCR") then
+            hookfunction(v, function() end)
+        end
+        
         if table.find(consts, "Hooked Env") then
             for idx, const in consts do
                 if const == "ReplicatedFirst.Animate" then
@@ -53,27 +48,25 @@ for i, v in getgc() do
                 end
             end
         end
-        if table.find(consts, "FrogWasHere") then
-            local upvals = debug.getupvalues(v)
-            if #upvals == 7 then
-                for idx = 1, 7 do
-                    if typeof(upvals[idx]) == "function" then
-                        debug.setupvalue(v, idx, function() end)
-                    end
-                end
-            elseif #upvals == 3 then
-                debug.setupvalue(v, 1, function() end)
-            end
-        end
     end
 end
 
-Players.LocalPlayer.CharacterAdded:Connect(function(char)
-    char.DescendantAdded:Connect(function() end)
+local p = Players.LocalPlayer
+p.CharacterAdded:Connect(function(c)
+    local conn = c.DescendantAdded:Connect(function() end)
+    task.wait(0.1)
+    conn:Disconnect()
+    c.DescendantAdded:Connect(function() end)
 end)
 
-if Players.LocalPlayer.Character then
-    Players.LocalPlayer.Character.DescendantAdded:Connect(function() end)
+if p.Character then
+    local conn = p.Character.DescendantAdded:Connect(function() end)
+    task.wait(0.1)
+    conn:Disconnect()
+    p.Character.DescendantAdded:Connect(function() end)
 end
+
+Log.MessageOut:Connect(function() end)
+
 
 Log.MessageOut:Connect(function() end)

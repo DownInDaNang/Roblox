@@ -1756,16 +1756,17 @@ end
 
 local newnamecall = newcclosure(function(...)
     local method = getnamecallmethod()
+    local allArgs = {...}
     
     if method and (method == "FireServer" or method == "fireServer" or method == "InvokeServer" or method == "invokeServer") then
-        if typeof(...) == 'Instance' then
-            local remote = cloneref(...)
+        if typeof(allArgs[1]) == 'Instance' then
+            local remote = cloneref(allArgs[1])
             if IsA(remote,"RemoteEvent") or IsA(remote,"RemoteFunction") then
                 task.spawn(function()
                     if not configs.logcheckcaller and checkcaller() then return end
                     local id = ThreadGetDebugId(remote)
                     local blockcheck = tablecheck(blocklist,remote,id)
-                    local args = {select(2,...)}
+                    local args = {select(2, unpack(allArgs))}
                     
                     if not tablecheck(blacklist,remote,id) and not IsCyclicTable(args) then
                         local data = {
@@ -1786,7 +1787,7 @@ local newnamecall = newcclosure(function(...)
             end
         end
     end
-    return originalnamecall(...)
+    return originalnamecall(unpack(allArgs))
 end)
 
 

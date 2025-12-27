@@ -1873,13 +1873,16 @@ end
 function toggleSpy()
     if not toggle then
         originalnamecall = getrawmetatable(game).__namecall
-        originalEvent = hookfunction(Instance.new("RemoteEvent").FireServer, clonefunction(newFireServer))
-        originalFunction = hookfunction(Instance.new("RemoteFunction").InvokeServer, clonefunction(newInvokeServer))
+        local oldEvent = hookfunction(Instance.new("RemoteEvent").FireServer, newFireServer)
+        local oldFunction = hookfunction(Instance.new("RemoteFunction").InvokeServer, newInvokeServer)
+        originalEvent = oldEvent
+        originalFunction = oldFunction
     else
         hookfunction(Instance.new("RemoteEvent").FireServer, originalEvent)
         hookfunction(Instance.new("RemoteFunction").InvokeServer, originalFunction)
     end
 end
+
 
 --- Toggles between the two remotespy methods (hookfunction currently = disabled)
 function toggleSpyMethod()

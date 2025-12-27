@@ -1791,66 +1791,6 @@ local newnamecall = newcclosure(function(...)
     return originalnamecall(unpack(allArgs))
 end)
 
-
-
-local newFireServer = newcclosure(function(self, ...)
-    if not configs.logcheckcaller and checkcaller() then return originalEvent(self, ...) end
-    
-    local remote = cloneref(self)
-    local id = ThreadGetDebugId(remote)
-    local blockcheck = tablecheck(blocklist, remote, id)
-    local args = {...}
-    
-    if not tablecheck(blacklist, remote, id) and not IsCyclicTable(args) then
-        task.spawn(function()
-            local data = {
-                method = "FireServer",
-                remote = remote,
-                args = deepclone(args),
-                infofunc = configs.funcEnabled and info(2, "f") or nil,
-                callingscript = configs.funcEnabled and (getcallingscript() and cloneref(getcallingscript()) or nil) or nil,
-                metamethod = "__index",
-                blockcheck = blockcheck,
-                id = id,
-                returnvalue = {}
-            }
-            schedule(remoteHandler, data)
-        end)
-    end
-    
-    if blockcheck then return end
-    return originalEvent(self, ...)
-end)
-
-local newInvokeServer = newcclosure(function(self, ...)
-    if not configs.logcheckcaller and checkcaller() then return originalFunction(self, ...) end
-    
-    local remote = cloneref(self)
-    local id = ThreadGetDebugId(remote)
-    local blockcheck = tablecheck(blocklist, remote, id)
-    local args = {...}
-    
-    if not tablecheck(blacklist, remote, id) and not IsCyclicTable(args) then
-        task.spawn(function()
-            local data = {
-                method = "InvokeServer",
-                remote = remote,
-                args = deepclone(args),
-                infofunc = configs.funcEnabled and info(2, "f") or nil,
-                callingscript = configs.funcEnabled and (getcallingscript() and cloneref(getcallingscript()) or nil) or nil,
-                metamethod = "__index",
-                blockcheck = blockcheck,
-                id = id,
-                returnvalue = {}
-            }
-            schedule(remoteHandler, data)
-        end)
-    end
-    
-    if blockcheck then return end
-    return originalFunction(self, ...)
-end)
-
 local function disablehooks()
     if synv3 then
         unhook(getrawmetatable(game).__namecall,originalnamecall)
@@ -1874,10 +1814,67 @@ end
 function toggleSpy()
     if not toggle then
         originalnamecall = getrawmetatable(game).__namecall
-        local oldEvent = hookfunction(Instance.new("RemoteEvent").FireServer, newFireServer)
-        local oldFunction = hookfunction(Instance.new("RemoteFunction").InvokeServer, newInvokeServer)
-        originalEvent = oldEvent
-        originalFunction = oldFunction
+        
+        local newFireServer = newcclosure(function(self, ...)
+            if not configs.logcheckcaller and checkcaller() then return originalEvent(self, ...) end
+            
+            local remote = cloneref(self)
+            local id = ThreadGetDebugId(remote)
+            local blockcheck = tablecheck(blocklist, remote, id)
+            local args = {...}
+            
+            if not tablecheck(blacklist, remote, id) and not IsCyclicTable(args) then
+                task.spawn(function()
+                    local data = {
+                        method = "FireServer",
+                        remote = remote,
+                        args = deepclone(args),
+                        infofunc = configs.funcEnabled and info(2, "f") or nil,
+                        callingscript = configs.funcEnabled and (getcallingscript() and cloneref(getcallingscript()) or nil) or nil,
+                        metamethod = "__index",
+                        blockcheck = blockcheck,
+                        id = id,
+                        returnvalue = {}
+                    }
+                    schedule(remoteHandler, data)
+                end)
+            end
+            
+            if blockcheck then return end
+            return originalEvent(self, ...)
+        end)
+        
+        local newInvokeServer = newcclosure(function(self, ...)
+            if not configs.logcheckcaller and checkcaller() then return originalFunction(self, ...) end
+            
+            local remote = cloneref(self)
+            local id = ThreadGetDebugId(remote)
+            local blockcheck = tablecheck(blocklist, remote, id)
+            local args = {...}
+            
+            if not tablecheck(blacklist, remote, id) and not IsCyclicTable(args) then
+                task.spawn(function()
+                    local data = {
+                        method = "InvokeServer",
+                        remote = remote,
+                        args = deepclone(args),
+                        infofunc = configs.funcEnabled and info(2, "f") or nil,
+                        callingscript = configs.funcEnabled and (getcallingscript() and cloneref(getcallingscript()) or nil) or nil,
+                        metamethod = "__index",
+                        blockcheck = blockcheck,
+                        id = id,
+                        returnvalue = {}
+                    }
+                    schedule(remoteHandler, data)
+                end)
+            end
+            
+            if blockcheck then return end
+            return originalFunction(self, ...)
+        end)
+        
+        originalEvent = hookfunction(Instance.new("RemoteEvent").FireServer, newFireServer)
+        originalFunction = hookfunction(Instance.new("RemoteFunction").InvokeServer, newInvokeServer)
     else
         hookfunction(Instance.new("RemoteEvent").FireServer, originalEvent)
         hookfunction(Instance.new("RemoteFunction").InvokeServer, originalFunction)

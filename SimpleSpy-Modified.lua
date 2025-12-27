@@ -1762,17 +1762,17 @@ local newnamecall = newcclosure(function(...)
         if typeof(allArgs[1]) == 'Instance' then
             local remote = cloneref(allArgs[1])
             if IsA(remote,"RemoteEvent") or IsA(remote,"RemoteFunction") then
+                local capturedArgs = {select(2, unpack(allArgs))}
                 task.spawn(function()
                     if not configs.logcheckcaller and checkcaller() then return end
                     local id = ThreadGetDebugId(remote)
                     local blockcheck = tablecheck(blocklist,remote,id)
-                    local args = {select(2, unpack(allArgs))}
                     
-                    if not tablecheck(blacklist,remote,id) and not IsCyclicTable(args) then
+                    if not tablecheck(blacklist,remote,id) and not IsCyclicTable(capturedArgs) then
                         local data = {
                             method = method,
                             remote = remote,
-                            args = deepclone(args),
+                            args = deepclone(capturedArgs),
                             infofunc = configs.funcEnabled and info(2,"f") or nil,
                             callingscript = configs.funcEnabled and (getcallingscript() and cloneref(getcallingscript()) or nil) or nil,
                             metamethod = "__namecall",
@@ -1789,6 +1789,7 @@ local newnamecall = newcclosure(function(...)
     end
     return originalnamecall(unpack(allArgs))
 end)
+
 
 
 local newFireServer = newcclosure(function(...)

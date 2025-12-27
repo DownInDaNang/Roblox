@@ -308,8 +308,8 @@ local NamecallHandler = Instance.new("BindableEvent",Storage)
 local IndexHandler = Instance.new("BindableEvent",Storage)
 local GetDebugIdHandler = Instance.new("BindableFunction",Storage) --Thanks engo for the idea of using BindableFunctions
 
-local originalEvent = remoteEvent.FireServer
-local originalFunction = remoteFunction.InvokeServer
+local originalEvent = Instance.new("RemoteEvent").FireServer
+local originalFunction = Instance.new("RemoteFunction").InvokeServer
 local GetDebugIDInvoke = GetDebugIdHandler.Invoke
 
 function GetDebugIdHandler.OnInvoke(obj: Instance) -- To avoid having to set thread identity and ect

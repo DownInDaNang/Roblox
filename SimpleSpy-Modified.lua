@@ -1847,25 +1847,11 @@ end
 --- Toggles on and off the remote spy
 function toggleSpy()
     if not toggle then
-        local oldnamecall
-        if synv3 then
-            oldnamecall = hook(getrawmetatable(game).__namecall,clonefunction(newnamecall))
-            originalEvent = hook(Instance.new("RemoteEvent").FireServer, clonefunction(newFireServer))
-            originalFunction = hook(Instance.new("RemoteFunction").InvokeServer, clonefunction(newInvokeServer))
-        else
-            if hookmetamethod then
-                oldnamecall = hookmetamethod(game, "__namecall", clonefunction(newnamecall))
-            else
-                oldnamecall = hookfunction(getrawmetatable(game).__namecall,clonefunction(newnamecall))
-            end
-            originalEvent = hookfunction(Instance.new("RemoteEvent").FireServer, clonefunction(newFireServer))
-            originalFunction = hookfunction(Instance.new("RemoteFunction").InvokeServer, clonefunction(newInvokeServer))
-        end
-        originalnamecall = originalnamecall or function(...)
-            return oldnamecall(...)
-        end
+        originalEvent = hookfunction(Instance.new("RemoteEvent").FireServer, clonefunction(newFireServer))
+        originalFunction = hookfunction(Instance.new("RemoteFunction").InvokeServer, clonefunction(newInvokeServer))
     else
-        disablehooks()
+        hookfunction(Instance.new("RemoteEvent").FireServer, originalEvent)
+        hookfunction(Instance.new("RemoteFunction").InvokeServer, originalFunction)
     end
 end
 

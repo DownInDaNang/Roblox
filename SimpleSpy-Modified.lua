@@ -1756,67 +1756,6 @@ local newindex = function(method,originalfunction,...)
     return originalfunction(...)
 end
 
-local newnamecall = newcclosure(function(...)
-    local method = getnamecallmethod()
-
-    if method and (method == "FireServer" or method == "fireServer" or method == "InvokeServer" or method == "invokeServer") then
-        if typeof(...) == 'Instance' then
-            local remote = cloneref(...)
-
-            if IsA(remote,"RemoteEvent") or IsA(remote,"RemoteFunction") then    
-                if not configs.logcheckcaller and checkcaller() then return originalnamecall(...) end
-                local id = ThreadGetDebugId(remote)
-                local blockcheck = tablecheck(blocklist,remote,id)
-                local args = {select(2,...)}
-
-                if not tablecheck(blacklist,remote,id) and not IsCyclicTable(args) then
-                    local data = {
-                        method = method,
-                        remote = remote,
-                        args = deepclone(args),
-                        infofunc = infofunc,
-                        callingscript = callingscript,
-                        metamethod = "__namecall",
-                        blockcheck = blockcheck,
-                        id = id,
-                        returnvalue = {}
-                    }
-                    args = nil
-
-                    if configs.funcEnabled then
-                        data.infofunc = info(2,"f")
-                        local calling = getcallingscript()
-                        data.callingscript = calling and cloneref(calling) or nil
-                    end
-
-                    schedule(remoteHandler,data)
-                    
-                    --[[if configs.logreturnvalues and remote.IsA(remote,"RemoteFunction") then
-                        local thread = running()
-                        local returnargs = {...}
-                        local returndata
-
-                        spawn(function()
-                            setnamecallmethod(method)
-                            returndata = originalnamecall(unpack(returnargs))
-                            data.returnvalue.data = returndata
-                            if ThreadIsNotDead(thread) then
-                                resume(thread)
-                            end
-                        end)
-                        yield()
-                        if not blockcheck then
-                            return returndata
-                        end
-                    end]]
-                end
-                if blockcheck then return end
-            end
-        end
-    end
-    return originalnamecall(...)
-end)
-
 local newFireServer = newcclosure(function(...)
     return newindex("FireServer",originalEvent,...)
 end)

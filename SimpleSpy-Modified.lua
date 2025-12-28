@@ -1756,13 +1756,76 @@ local newindex = function(method,originalfunction,...)
     return originalfunction(...)
 end
 
-local newFireServer = newcclosure(function(...)
-    return newindex("FireServer",originalEvent,...)
+local newFireServer = newcclosure(function(self, ...)
+    if not configs.logcheckcaller and checkcaller() then return originalEvent(self, ...) end
+    
+    local remote = cloneref(self)
+    if remote:IsA("RemoteEvent") then
+        local id = ThreadGetDebugId(remote)
+        local blockcheck = tablecheck(blocklist, remote, id)
+        local args = {...}
+        
+        if not tablecheck(blacklist, remote, id) and not IsCyclicTable(args) then
+            local data = {
+                method = "FireServer",
+                remote = remote,
+                args = deepclone(args),
+                metamethod = "__index",
+                blockcheck = blockcheck,
+                id = id,
+                returnvalue = {}
+            }
+            
+            if configs.funcEnabled then
+                data.infofunc = info(2, "f")
+                local calling = getcallingscript()
+                data.callingscript = calling and cloneref(calling) or nil
+            end
+            
+            schedule(remoteHandler, data)
+        end
+        
+        if blockcheck then return end
+    end
+    
+    return originalEvent(self, ...)
 end)
 
-local newInvokeServer = newcclosure(function(...)
-    return newindex("InvokeServer",originalFunction,...)
+local newInvokeServer = newcclosure(function(self, ...)
+    if not configs.logcheckcaller and checkcaller() then return originalFunction(self, ...) end
+    
+    local remote = cloneref(self)
+    if remote:IsA("RemoteFunction") then
+        local id = ThreadGetDebugId(remote)
+        local blockcheck = tablecheck(blocklist, remote, id)
+        local args = {...}
+        
+        if not tablecheck(blacklist, remote, id) and not IsCyclicTable(args) then
+            local data = {
+                method = "InvokeServer",
+                remote = remote,
+                args = deepclone(args),
+                metamethod = "__index",
+                blockcheck = blockcheck,
+                id = id,
+                returnvalue = {}
+            }
+            
+            if configs.funcEnabled then
+                data.infofunc = info(2, "f")
+                local calling = getcallingscript()
+                data.callingscript = calling and cloneref(calling) or nil
+            end
+            
+            schedule(remoteHandler, data)
+        end
+        
+        if blockcheck then return end
+    end
+    
+    return originalFunction(self, ...)
 end)
+
 
 function toggleSpy()
     if not toggle then

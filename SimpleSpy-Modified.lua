@@ -1825,26 +1825,6 @@ local newInvokeServer = newcclosure(function(...)
     return newindex("InvokeServer",originalFunction,...)
 end)
 
-local function disablehooks()
-    if synv3 then
-        unhook(getrawmetatable(game).__namecall,originalnamecall)
-        unhook(Instance.new("RemoteEvent").FireServer, originalEvent)
-        unhook(Instance.new("RemoteFunction").InvokeServer, originalFunction)
-        restorefunction(originalnamecall)
-        restorefunction(originalEvent)
-        restorefunction(originalFunction)
-    else
-        if hookmetamethod then
-            hookmetamethod(game,"__namecall",originalnamecall)
-        else
-            hookfunction(getrawmetatable(game).__namecall,originalnamecall)
-        end
-        hookfunction(Instance.new("RemoteEvent").FireServer, originalEvent)
-        hookfunction(Instance.new("RemoteFunction").InvokeServer, originalFunction)
-    end
-end
-
---- Toggles on and off the remote spy
 function toggleSpy()
     if not toggle then
         originalEvent = hookfunction(Instance.new("RemoteEvent").FireServer, clonefunction(newFireServer))
@@ -1853,6 +1833,11 @@ function toggleSpy()
         hookfunction(Instance.new("RemoteEvent").FireServer, originalEvent)
         hookfunction(Instance.new("RemoteFunction").InvokeServer, originalFunction)
     end
+end
+
+local function disablehooks()
+    hookfunction(Instance.new("RemoteEvent").FireServer, originalEvent)
+    hookfunction(Instance.new("RemoteFunction").InvokeServer, originalFunction)
 end
 
 --- Toggles between the two remotespy methods (hookfunction currently = disabled)

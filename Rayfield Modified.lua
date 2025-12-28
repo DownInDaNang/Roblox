@@ -655,8 +655,7 @@ local CoreGui = getService("CoreGui")
 -- Interface Management
 
 local Rayfield = useStudio and script.Parent:FindFirstChild('Rayfield') or game:GetObjects("rbxassetid://10804731440")[1]
-Rayfield.Name = "Sxnigger"  -- Change this to whatever you want		
-local buildAttempts = 0
+Rayfield.Name = "Sxnigger" -- @DownInDaNang's fingerprint :)
 local correctBuild = false
 local warned
 local globalLoaded

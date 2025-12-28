@@ -654,7 +654,15 @@ local CoreGui = getService("CoreGui")
 
 -- Interface Management
 
-local Rayfield = useStudio and script.Parent:FindFirstChild('Rayfield') or game:GetObjects("rbxassetid://10804731440")[1]
+local Rayfield
+if useStudio then
+    Rayfield = script.Parent:FindFirstChild('Rayfield')
+else
+    local ContentProvider = game:GetService("ContentProvider")
+    local asset = game:GetObjects("rbxassetid://10804731440")[1]
+    ContentProvider:PreloadAsync({asset}, function() end)
+    Rayfield = asset
+end
 Rayfield.Name = "Sxnigger" -- @DownInDaNang's fingerprint :)
 local correctBuild = false
 local warned
@@ -1783,7 +1791,16 @@ function RayfieldLibrary:CreateWindow(Settings)
 		if not Passthrough then
 			local AttemptsRemaining = math.random(2, 5)
 			Rayfield.Enabled = false
-			local KeyUI = useStudio and script.Parent:FindFirstChild('Key') or game:GetObjects("rbxassetid://11380036235")[1]
+			local KeyUI
+if useStudio then
+    KeyUI = script.Parent:FindFirstChild('Key')
+else
+    local ContentProvider = game:GetService("ContentProvider")
+    local asset = game:GetObjects("rbxassetid://11380036235")[1]
+    ContentProvider:PreloadAsync({asset}, function() end)
+    KeyUI = asset
+end
+
 
 			KeyUI.Enabled = true
 

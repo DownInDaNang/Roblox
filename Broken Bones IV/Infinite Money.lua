@@ -1,8 +1,4 @@
---[[
-
-	@DownInDaNang - should work after first death
-
-]]
+ -- should work after first death
 
 local functions = game.ReplicatedStorage:WaitForChild("Functions")
 

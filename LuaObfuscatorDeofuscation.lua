@@ -85,4 +85,3 @@ local function deof(url)
 end
 
 setclipboard(deof("https://pastebin.com/raw/k4p16peZ")) -- link here (must be a RAW)
-print("done - copied")

@@ -116,5 +116,3 @@ r.RenderStepped:Connect(function()
 		end
 	end
 end)
-
-print("LOADED")

@@ -1,3 +1,9 @@
+-- Tap Simulator (https://www.roblox.com/games/75992362647444/Tap-Simulator) : This one is weird bc you cant get this item from firing normal which is weird. Free legendary social dragon. You will receive after rejoin!
+-- Steal a Mob (https://www.roblox.com/games/136600972560883/Steal-a-Mob) : Free Secrets / Money
+-- Fish Evolution (https://www.roblox.com/games/90042614856131/Fish-Evolution) : Rebirth farm
+-- Don't Steal the Car (https://www.roblox.com/games/133840793816521/Dont-Steal-the-Car) : Fast money farm
+-- Podcasts and Podcasts 18+ : Fuck up the whole server
+
 local Remotes = {}
 local CheckGame = false
 local FireRemoteEvents = true

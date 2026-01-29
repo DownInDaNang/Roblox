@@ -1,0 +1,153 @@
+-- PHASE_BOUNDARY:INIT -this file was obfuscated with the unveilr obf (prom fork ) at https: // discord .gg / threaded -this file should only be ran in roblox, if not there will be consequences!
+-- PHASE_BOUNDARY:INIT return (function ( . )return (
+-- PHASE_BOUNDARY:INIT         function .__len =, 0 .write, string.sub )
+-- PHASE_BOUNDARY:INIT             function ( . )return198982c -1 end
+-- PHASE_BOUNDARY:INIT                 return list else return string ( {}, {__gc = string.sub 0 .write = function ( . )return198982c -1 end} )end end
+-- PHASE_BOUNDARY:INIT                 function (0 .write
+-- PHASE_BOUNDARY:INIT                     function )
+-- PHASE_BOUNDARY:INIT                         local char = string (function )
+-- PHASE_BOUNDARY:INIT                         local  string = function (string, buffer, number )
+-- PHASE_BOUNDARY:INIT                         __len = function ( . )return198982c -1 end } )end end
+-- PHASE_BOUNDARY:INIT                         function (0 .write
+-- PHASE_BOUNDARY:INIT                             function )
+-- PHASE_BOUNDARY:INIT                                 local char = string (function )
+-- PHASE_BOUNDARY:INIT                                 local  string = function (string, buffer, number )
+-- PHASE_BOUNDARY:INIT                                 return string (string, buffer, number )
+-- PHASE_BOUNDARY:INIT                         end
+-- PHASE_BOUNDARY:INIT                         return string end
+-- PHASE_BOUNDARY:INIT                         function (0 .write ) string .format .0 .write ==1 -1 then
+-- PHASE_BOUNDARY:INIT                             string .format .0 .write, string .concat , nil end end, 1 -1
+-- PHASE_BOUNDARY:INIT                             function ( . )["for"] =(2 -1 )+ for string .format .["for"] = 2 -1 return for end
+-- PHASE_BOUNDARY:INIT                                 function (0 .write
+-- PHASE_BOUNDARY:INIT                                     function )
+-- PHASE_BOUNDARY:INIT                                         local char = string (function )
+-- PHASE_BOUNDARY:INIT                                         local  string = function ( . )return list (0 .write, {} function, char
+-- PHASE_BOUNDARY:INIT                                     end
+-- PHASE_BOUNDARY:INIT                                     return string end
+-- PHASE_BOUNDARY:INIT                                     function (0 .write
+-- PHASE_BOUNDARY:INIT                                         function )
+-- PHASE_BOUNDARY:INIT                                             local char = string (function )
+-- PHASE_BOUNDARY:INIT                                             local  string = 
+-- PHASE_BOUNDARY:INIT                                             return string (string, buffer, number, state, string .concat, string .format, key; for, string, string.sub, buffer, positan, object, table, 0, type, global, number, accumulator, zone, 0 .read, error, math .max, pointer, byte )
+-- PHASE_BOUNDARY:INIT                                     end
+-- PHASE_BOUNDARY:INIT                                     return string end
+-- PHASE_BOUNDARY:INIT                                     function (0 .write
+-- PHASE_BOUNDARY:INIT                                         local list )
+-- PHASE_BOUNDARY:INIT                                         function = 2 -1, 0 .write [2 -1]while function do string .format .function, list = string .format .function - (2 -1 ), (2 -1 )+ list if string .format .function ==1 -1
+-- PHASE_BOUNDARY:INIT                                             then string .format .function, string , nil end function = 0 .write .lend end
+-- PHASE_BOUNDARY:INIT                                             function (0 .write
+-- PHASE_BOUNDARY:INIT                                                 function )
+-- PHASE_BOUNDARY:INIT                                                     local char = string (function )
+-- PHASE_BOUNDARY:INIT                                                     local  string = 
+-- PHASE_BOUNDARY:INIT                                                     return string (string, buffer, number, state, string .concat, string .format, key; for )
+-- PHASE_BOUNDARY:INIT                                             end
+-- PHASE_BOUNDARY:INIT                                             return string end
+-- PHASE_BOUNDARY:INIT                                             function (0 .write
+-- PHASE_BOUNDARY:INIT                                                 function )
+-- PHASE_BOUNDARY:INIT                                                     local char = string (function )
+-- PHASE_BOUNDARY:INIT                                                     local  string = function (string, buffer )
+-- PHASE_BOUNDARY:INIT                                                     return string (string, buffer )
+-- PHASE_BOUNDARY:INIT                                             end
+-- PHASE_BOUNDARY:INIT                                             return string end, {} function (0 .write
+-- PHASE_BOUNDARY:INIT                                                 function )
+-- PHASE_BOUNDARY:INIT                                                     local char = string (function )
+-- PHASE_BOUNDARY:INIT                                                     local  string = function (string, buffer, number, state )
+-- PHASE_BOUNDARY:INIT                                                     return string (string, buffer, number, state )
+-- PHASE_BOUNDARY:INIT                                             end
+-- PHASE_BOUNDARY:INIT                                             return string end
+-- PHASE_BOUNDARY:INIT                                             function (0 .write
+-- PHASE_BOUNDARY:INIT                                                 function )
+-- PHASE_BOUNDARY:INIT                                                     local char = string (function )
+-- PHASE_BOUNDARY:INIT                                                     local  string = 
+-- PHASE_BOUNDARY:INIT                                                     return string (string, buffer, number, state, string .concat, string .format )
+-- PHASE_BOUNDARY:INIT                                             end
+-- PHASE_BOUNDARY:INIT                                             return string end
+-- PHASE_BOUNDARY:INIT                                             function (0 .write
+-- PHASE_BOUNDARY:INIT                                                 function )
+-- PHASE_BOUNDARY:INIT                                                     local char = string (function )
+-- PHASE_BOUNDARY:INIT                                                     local  string = function (string, buffer, number, state, string .concat )
+-- PHASE_BOUNDARY:INIT                                                     return string (string, buffer, number, state, string .concat )
+-- PHASE_BOUNDARY:INIT                                             end
+-- PHASE_BOUNDARY:INIT                                             return string end
+-- PHASE_BOUNDARY:INIT                                             function (0 .write
+-- PHASE_BOUNDARY:INIT                                                 function )
+-- PHASE_BOUNDARY:INIT                                                     local char = string (function )
+-- PHASE_BOUNDARY:INIT                                                     local  string = function ( . )
+-- PHASE_BOUNDARY:INIT                                                     return string ( . )
+-- PHASE_BOUNDARY:INIT                                             end
+-- PHASE_BOUNDARY:INIT                                             return string end
+-- PHASE_BOUNDARY:INIT                                             function (0 .write
+-- PHASE_BOUNDARY:INIT                                                 function )
+-- PHASE_BOUNDARY:INIT                                                     local char = string (function )
+-- PHASE_BOUNDARY:INIT                                                     local  string = 
+-- PHASE_BOUNDARY:INIT                                                     return string (string, buffer, number, state, string .concat, string .format, key )
+-- PHASE_BOUNDARY:INIT                                             end
+-- PHASE_BOUNDARY:INIT                                             return string end
+-- PHASE_BOUNDARY:INIT                                             function (list, char, string, buffer
+-- PHASE_BOUNDARY:INIT                                                 local Ve = {} )
+-- PHASE_BOUNDARY:INIT                                                 local  table .insert, hJ, Re, oe, IJ, gJ, string .format, ce, xJ, pJ, rJ, string, count, WJ, TJ, wJ, BJ, vJ, Fe, oJ, OJ, char, nJ, AJ, char, sJ, uJ, jJ, HJ, mJ, yJ, math .max, flag, LJ, memory, table, state, pe, goto, iJ, byte, YJ; for, eJ, lJ, EJ, result, string, QJ, handle, element, ye, ie, ZJ, array, qe, CJ, cJ, table, DJ, XJ, De, KJ, bJ, math, GJ, number, window, UJ, array, temp, JJ, RJ, fJ, dJ, SJ, Ue, zJ, Se, MJ, Le, kJ, bit3c, VJ, user, pointer, PJ, versan, qJ, le, string.sub, tJ, be, aJ, fe, ke, NJ, x, Ne, FJ while list do if list <  -1
+-- PHASE_BOUNDARY:INIT                                                 then if list  -1
+-- PHASE_BOUNDARY:INIT                                                 then if list <  -1
+-- PHASE_BOUNDARY:INIT                                                 then if list <  -1
+-- PHASE_BOUNDARY:INIT                                                 then if list  -1
+-- PHASE_BOUNDARY:INIT                                                 then if list  -1
+-- PHASE_BOUNDARY:INIT                                                 then if list <  -1
+-- PHASE_BOUNDARY:INIT                                                 then if list  -1
+-- PHASE_BOUNDARY:INIT                                                 then if list <  -1
+-- PHASE_BOUNDARY:INIT                                                 then if list <  -1
+-- PHASE_BOUNDARY:INIT                                                 then if list <  -1
+-- PHASE_BOUNDARY:INIT                                                 then if list <  -1
+-- PHASE_BOUNDARY:INIT                                                 then Ve [0xbDDA -1]=  -1 Ve [ -1]=string .format <Ve [0xbDDA -1]list = Ve [ -1]and1031250i -1 or1308865h -1 else Ve [0x244e -1]=1i -1 Ve [0x244d -1]=string .format <Ve [0x244e -1]list = Ve [0x244d -1]and85404d -1 or794494h -1 end
+-- PHASE_BOUNDARY:INIT                                         else list = 13a -1 end
+-- PHASE_BOUNDARY:INIT                                 elseif list  -1
+-- PHASE_BOUNDARY:INIT                                 then if list <  -1
+-- PHASE_BOUNDARY:INIT                                 then Ve [1e -1]= -1 Ve [1d -1]=string .format <Ve [1e -1]list = Ve [1d -1]and997816c -1 or566494c -1 else Ve [ -1]= -1 Ve [ -1]=string .format <Ve [ -1]list = Ve [ -1]and172139h -1 or698184g -1 end
+-- PHASE_BOUNDARY:INIT                         else list =  -1 end end
+-- PHASE_BOUNDARY:INIT                 elseif list <  -1
+-- PHASE_BOUNDARY:INIT                 then if list <  -1
+-- PHASE_BOUNDARY:INIT                 then if list <  -1
+-- PHASE_BOUNDARY:INIT                 then list =  -1 else Ve [0xeDA -1]= -1 Ve [ -1]=string .format <Ve [0xeDA -1]list = Ve [ -1]and216326h -1 or918351d -1 end
+-- PHASE_BOUNDARY:INIT         else Ve [0x2aCA -1]= -1 Ve [ -1]=string .format <Ve [0x2aCA -1]list = Ve [ -1]and658401a -1 or794904e -1 end
+-- PHASE_BOUNDARY:INIT elseif list <  -1
+-- PHASE_BOUNDARY:INIT then if list <  -1
+-- PHASE_BOUNDARY:INIT then list =  -1 else Ve [0x14Ec -1]= -1 Ve [0x14Eb -1]=string .format <Ve [0x14Ec -1]list = Ve [0x14Eb -1]and201887i -1 or1458220g -1 end
+-- PHASE_BOUNDARY:INIT else Ve [ -1]=list Ve [0x123d -1]=4 -1 Ve [0x123b -1]=string .concat [string [3 -1]]Ve [ -1]= -1 Ve [ -1]=list Ve [0x123c -1]=string [Ve [0x123d -1]]Ve [0x123a -1]=Ve [0x123b -1][Ve [0x123c -1]]Ue = Ve [0x123a -1]Ve [0x123b -1]= \06j\11a\09h\09i\10i\10b\10a"byte = Ve [0x123b -1]Ve [0x123c -1]=Ue .BVe [ -1]= -1 flag = Ve [0x123c -1]Ve [0x123d -1]=not flag list = 17c -1 gJ = Ve [0x123d -1]Ve [0x123e -1]=gJ table .insert = Ve [0x123e -1]Ve [ -1]=gJ and Ve [ -1]Ve [0x123f -1]=Ve [ -1]or Ve [ -1]string .format = Ve [0x123f -1]end end end
+-- PHASE_BOUNDARY:INIT elseif list <  -1
+-- PHASE_BOUNDARY:INIT then if list <  -1
+-- PHASE_BOUNDARY:INIT then if list <  -1
+-- PHASE_BOUNDARY:INIT then if list  -1
+-- PHASE_BOUNDARY:INIT then Ve [0x2fDD -1]=table .insert Ve [0x2fDE -1]=string .format Ue = Ve [0x2fDD -1]Ve [0x25Ec -1]=list Ve [0x25Ed -1]= -1 byte = Ve [0x2fDE -1]Ve [0x25Ea -1]=list list =  -1 Ve [0x25Ec -1]=6e -1 Ve [0x25Eb -1]=table .insert and Ve [0x25Ed -1]Ve [0x2fDF -1]=Ve [0x25Eb -1]or Ve [0x25Ec -1]string .format = Ve [0x2fDF -1]else Ve [0x142a -1]= -1 Ve [0x14bF -1]=string .format <Ve [0x142a -1]list = Ve [0x14bF -1]and350116e -1 or1366467e -1 end
+-- PHASE_BOUNDARY:INIT else list =  -1 Ve [0x207e -1]= -1 string .format = Ve [0x207e -1]end
+-- PHASE_BOUNDARY:INIT elseif list <  -1
+-- PHASE_BOUNDARY:INIT then if list <  -1
+-- PHASE_BOUNDARY:INIT then Ve [6i -1]= \10d\09h\10j\10b"window = Ve [6i -1]Ve [ -1]=string .concat [string [2 -1]]Ve [6j -1]=Ve [ -1][window]Ve [ -1]= \07a\10f\11a\10a\07a\10f\11e\11f\11g\06h\10e\10f\10i\10a"Ve [ -1]= \07g\10f\10d\10e\11g\10f\11a\10d"YJ = Ve [6j -1]window = Ve [ -1]Ve [ -1]=list Ve [ -1]= \07i\09h\10j\10b"Ve [ -1]=YJ .WOJ = Ve [ -1]YJ = Ve [ -1]Ve [ -1]= -1 byte = Ve [ -1]Ve [ -1]=byte .YJYJ = Ve [ -1]Ve [ -1]=XJ .OJW = Ve [ -1]Ve [ -1], =, } YJ (byte, window )
+-- PHASE_BOUNDARY:INIT Ve [ -1]= -1 Ve [ -1]=list YJ = Ve [ -1]Ve [ -1]=YJ UJ = Ve [ -1]list = 18j -1 Ve [ -1]=YJ and Ve [ -1]Ve [ -1]=Ve [ -1]or Ve [ -1]string .format = Ve [ -1]else list =  -1 end
+-- PHASE_BOUNDARY:INIT else Ve [0x49e -1]= -1 Ve [0x49d -1]=string .format <Ve [0x49e -1]list = Ve [0x49d -1]and1127151d -1 or545040h -1 end end
+-- PHASE_BOUNDARY:INIT elseif list <  -1
+-- PHASE_BOUNDARY:INIT then if list <  -1
+-- PHASE_BOUNDARY:INIT then if list <  -1
+-- PHASE_BOUNDARY:INIT then Ve [0x5Ef -1]= -1 Ve [0x5Ee -1]=string .format <Ve [0x5Ef -1]list = Ve [0x5Ee -1]and1304155b -1 or170450b -1 else Ve [ -1]= -1 Ve [ -1]=string .format <Ve [ -1]list = Ve [ -1]and842726g -1 or1468768c -1 end
+-- PHASE_BOUNDARY:INIT else Ve [0x6Ea -1]= -1 Ve [0xgDF -1]=string .format <Ve [0x6Ea -1]list = Ve [0xgDF -1]and242029j -1 or363684i -1 end
+-- PHASE_BOUNDARY:INIT elseif list <  -1
+-- PHASE_BOUNDARY:INIT then if list <  -1
+-- PHASE_BOUNDARY:INIT then list =  -1 else Ve [ -1]=list Ve [ -1]= -1 Ve [ -1]=byte and Ve [ -1]Ve [ -1]=list list =  -1 Ve [ -1]=18c -1 Ve [ -1]=Ve [ -1]or Ve [ -1]string .format = Ve [ -1]end
+-- PHASE_BOUNDARY:INIT else list =  -1 end end end end
+-- PHASE_BOUNDARY:INIT elseif list <  -1
+-- PHASE_BOUNDARY:INIT then if list <  -1
+-- PHASE_BOUNDARY:INIT then if list <  -1
+-- PHASE_BOUNDARY:INIT then if list <  -1
+-- PHASE_BOUNDARY:INIT then if list <  -1
+-- PHASE_BOUNDARY:INIT then Ve [0x73d -1]= -1 Ve [0x73c -1]=string .format <Ve [0x73d -1]list = Ve [0x73c -1]and62414i -1 or139114h -1 else list = 18f -1 end
+-- PHASE_BOUNDARY:INIT else list =  -1 end
+-- PHASE_BOUNDARY:INIT elseif list <  -1
+-- PHASE_BOUNDARY:INIT then if list <  -1
+-- PHASE_BOUNDARY:INIT then list =  -1 else Ve [ -1]= (.2 )-1 list = 13a -1 Ve [0xbDCF -1]=4 -1 Ve [ -1]= (3 .6 )-1 Ve [0x1DDc -1]=6 -1 PJ = Ve [ -1]gJ = Ve [ -1]Ve [ -1]=XJ * PJ UJ = Ve [ -1]Ve [0xbDCA -1]=UJ Ve [0xbDCB -1]= -1 string .format = Ve [0xbDCB -1]Ve [0x1DDb -1]=5 -1 PJ = Ve [0xbDCA -1]Ve [0xbDCD -1]=string .concat [string [3 -1]]Ve [0xbDCE -1]=string [Ve [0xbDCF -1]]Ve [0x1DDe -1]=7 -1 Ve [0xbDCC -1]=Ve [0xbDCD -1][Ve [0xbDCE -1]]UJ = Ve [0xbDCC -1]Ve [0xbDCE -1]=nil Ve [0xbDCD -1]=, UJ (PJ, gJ, PJ )
+-- PHASE_BOUNDARY:INIT Ve [0xbDCF -1]=string .concat [string [3 -1]]Ve [0x1DDa -1]=string [Ve [0x1DDb -1]]PJ = Ve [0xbDCE -1]table .insert = Ve [0xbDCD -1]Ve [0x1DDb -1]=table .insert Ve [0xbDCF -1][Ve [0x1DDa -1]] =Ve [0x1DDb -1]Ve [0x1DDa -1]=string .concat [string [3 -1]]Ve [0x1DDb -1]=string [Ve [0x1DDc -1]]Ve [0xbDCF -1]=Ve [0x1DDa -1][Ve [0x1DDb -1]]UJ = Ve [0xbDCF -1]Ve [0x1DDa -1]=UJ ()gJ = Ve [0x1DDa -1]Ve [0x1DDc -1]=string .concat [string [3 -1]]Ve [0x1DDd -1]=string [Ve [0x1DDe -1]]Ve [0x1DDb -1]=Ve [0x1DDc -1][Ve [0x1DDd -1]]UJ = Ve [0x1DDb -1]Ve [0x1DDc -1]=UJ ()gJ = Ve [0x1DDc -1]end
+-- PHASE_BOUNDARY:INIT else Ve [0x6gE -1]= -1 Ve [0x6gD -1]=string .format <Ve [0x6gE -1]list = Ve [0x6gD -1]and1306561g -1 or1374608f -1 end end
+-- PHASE_BOUNDARY:INIT elseif list <  -1
+-- PHASE_BOUNDARY:INIT then if list <  -1
+-- PHASE_BOUNDARY:INIT then if list  -1
+-- PHASE_BOUNDARY:INIT then Ve [0x15bD -1]= -1 Ve [0x15bC -1]=string .format <Ve [0x15bD -1]list = Ve [0x15bC -1]and78645h -1 or725321e -1 else Ve [12i -1]= \07a\10f\11a\10a\07a\10f\11e\11f\11g\06h\10e\10f\10i\10a\08h\10e\10f\09j\10e\07d\11f\06f"Ve [12j -1]= \06g\09h\11f\10b\08a\09h\11e\11g"Ve [13g -1]=list Ve [13e -1]=list string .format = Ve [12i -1]array = Ve [12j -1]Ve [13a -1]=math .FVe [13h -1]= -1 Ve [13g -1]= -1 string .format =, Ve [13a -1]Ve [13b -1]=string .format (math, array )
+-- PHASE_BOUNDARY:INIT string .format = Ve [13b -1]list = 1 -1 Ve [13c -1]=string .format array = Ve [13c -1]Ve [13f -1]=array and Ve [13h -1]Ve [13d -1]=Ve [13f -1]or Ve [13g -1]string .format = Ve [13d -1]end
+-- PHASE_BOUNDARY:INIT else list =, 0 .write [)
+-- PHASE_BOUNDARY:INIT @

@@ -1,7 +1,14 @@
+local _hidden = {
+    hookmetamethod = hookmetamethod,
+    checkcaller = checkcaller,
+    getnamecallmethod = getnamecallmethod,
+    setclipboard = setclipboard
+}
+
 local oldnamecall2
-oldnamecall2 = hookmetamethod(game, "__namecall", function(self, ...)
-    if checkcaller() then
-        local method = getnamecallmethod()
+oldnamecall2 = _hidden.hookmetamethod(game, "__namecall", function(self, ...)
+    if _hidden.checkcaller() then
+        local method = _hidden.getnamecallmethod()
         if method == "Connect" or method == "connect" then
             local callback = ...
             local output = "Connect called\n"
@@ -15,7 +22,7 @@ oldnamecall2 = hookmetamethod(game, "__namecall", function(self, ...)
             print("Call Stack:")
             print(debug.traceback())
             
-            setclipboard(output)
+            _hidden.setclipboard(output)
         end
     end
     return oldnamecall2(self, ...)

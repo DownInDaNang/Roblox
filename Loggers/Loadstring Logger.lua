@@ -1,7 +1,13 @@
+local _hidden = {
+    checkcaller = checkcaller,
+    setclipboard = setclipboard,
+    getgenv = getgenv
+}
+
 local oldloadstring = loadstring
 
-getgenv().loadstring = function(source, chunkname)
-    if checkcaller() then
+_hidden.getgenv().loadstring = function(source, chunkname)
+    if _hidden.checkcaller() then
         local output = "loadstring called\n"
         output = output .. "Source length: " .. #source .. "\n"
         output = output .. "Chunkname: " .. tostring(chunkname or "nil") .. "\n"
@@ -15,7 +21,7 @@ getgenv().loadstring = function(source, chunkname)
         print("Call Stack:")
         print(debug.traceback())
         
-        setclipboard(output)
+        _hidden.setclipboard(output)
     end
     return oldloadstring(source, chunkname)
 end

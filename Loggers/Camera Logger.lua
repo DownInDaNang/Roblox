@@ -1,10 +1,17 @@
+local _hidden = {
+    getrawmetatable = getrawmetatable,
+    setreadonly = setreadonly,
+    checkcaller = checkcaller,
+    setclipboard = setclipboard
+}
+
 local camera = workspace.CurrentCamera
-local mt = getrawmetatable(camera)
-setreadonly(mt, false)
+local mt = _hidden.getrawmetatable(camera)
+_hidden.setreadonly(mt, false)
 local oldnewindex = mt.__newindex
 
 mt.__newindex = function(self, key, value)
-    if checkcaller() and self == camera then
+    if _hidden.checkcaller() and self == camera then
         local output = "Camera property changed\n"
         output = output .. "Property: " .. tostring(key) .. "\n"
         output = output .. "Old: " .. tostring(self[key]) .. "\n"
@@ -18,9 +25,9 @@ mt.__newindex = function(self, key, value)
         print("Call Stack:")
         print(debug.traceback())
         
-        setclipboard(output)
+        _hidden.setclipboard(output)
     end
     return oldnewindex(self, key, value)
 end
 
-setreadonly(mt, true)
+_hidden.setreadonly(mt, true)

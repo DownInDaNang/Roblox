@@ -1,7 +1,14 @@
+local _hidden = {
+    hookmetamethod = hookmetamethod,
+    checkcaller = checkcaller,
+    getnamecallmethod = getnamecallmethod,
+    setclipboard = setclipboard
+}
+
 local oldnamecall4
-oldnamecall4 = hookmetamethod(game, "__namecall", function(self, ...)
-    if checkcaller() then
-        local method = getnamecallmethod()
+oldnamecall4 = _hidden.hookmetamethod(game, "__namecall", function(self, ...)
+    if _hidden.checkcaller() then
+        local method = _hidden.getnamecallmethod()
         if method == "GetService" then
             local service = ...
             local output = "GetService called\n"
@@ -13,7 +20,7 @@ oldnamecall4 = hookmetamethod(game, "__namecall", function(self, ...)
             print("Call Stack:")
             print(debug.traceback())
             
-            setclipboard(output)
+            _hidden.setclipboard(output)
         end
     end
     return oldnamecall4(self, ...)

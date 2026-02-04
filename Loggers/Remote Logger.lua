@@ -1,7 +1,14 @@
+local _hidden = {
+    hookmetamethod = hookmetamethod,
+    checkcaller = checkcaller,
+    getnamecallmethod = getnamecallmethod,
+    setclipboard = setclipboard
+}
+
 local oldnamecall
-oldnamecall = hookmetamethod(game, "__namecall", function(self, ...)
-    if checkcaller() then
-        local method = getnamecallmethod()
+oldnamecall = _hidden.hookmetamethod(game, "__namecall", function(self, ...)
+    if _hidden.checkcaller() then
+        local method = _hidden.getnamecallmethod()
         if method == "FireServer" or method == "InvokeServer" then
             local args = {...}
             local argsStr = ""
@@ -23,7 +30,7 @@ oldnamecall = hookmetamethod(game, "__namecall", function(self, ...)
             print("Call Stack:")
             print(debug.traceback())
             
-            setclipboard(output)
+            _hidden.setclipboard(output)
         end
     end
     return oldnamecall(self, ...)

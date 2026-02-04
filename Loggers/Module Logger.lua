@@ -1,3 +1,10 @@
+local _hidden = {
+    checkcaller = checkcaller,
+    setclipboard = setclipboard,
+    getgenv = getgenv,
+    setmetatable = setmetatable
+}
+
 local modules = {}
 local oldreq = require
 
@@ -28,7 +35,7 @@ local function hookTable(tbl, modname, path, original)
         if type(v) == "table" and type(k) ~= "function" then
             local newpath = path == "" and k or (path .. "." .. k)
             
-            local proxy = setmetatable({}, {
+            local proxy = _hidden.setmetatable({}, {
                 __index = v,
                 __newindex = function(t, key, val)
                     local oldval = v[key]
@@ -74,7 +81,7 @@ local function hookTable(tbl, modname, path, original)
                         print("    new:", valueToString(val))
                     end
                     
-                    setclipboard(output)
+                    _hidden.setclipboard(output)
                 end
             })
             
@@ -84,8 +91,8 @@ local function hookTable(tbl, modname, path, original)
     end
 end
 
-getgenv().require = function(mod)
-    if not checkcaller() then
+_hidden.getgenv().require = function(mod)
+    if not _hidden.checkcaller() then
         return oldreq(mod)
     end
     

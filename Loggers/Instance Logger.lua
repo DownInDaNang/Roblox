@@ -1,11 +1,18 @@
+local _hidden = {
+    checkcaller = checkcaller,
+    setclipboard = setclipboard,
+    getgenv = getgenv,
+    setmetatable = setmetatable
+}
+
 local oldnew = Instance.new
-getgenv().Instance = setmetatable({}, {
+_hidden.getgenv().Instance = _hidden.setmetatable({}, {
     __index = function(t, k)
         if k == "new" then
             return function(class, parent)
                 local instance = oldnew(class, parent)
                 
-                if checkcaller() then
+                if _hidden.checkcaller() then
                     task.defer(function()
                         local output = "Instance created\n"
                         output = output .. "Class: " .. tostring(class) .. "\n"
@@ -20,7 +27,7 @@ getgenv().Instance = setmetatable({}, {
                         print("Call Stack:")
                         print(debug.traceback())
                         
-                        setclipboard(output)
+                        _hidden.setclipboard(output)
                     end)
                 end
                 

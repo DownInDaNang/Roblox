@@ -1,69 +1,127 @@
 -- @DownInDaNang - Adonis Bypass | blocks detections, kicks, and crashes
 
+local AdonisClient = nil
 
-local Adonis: any = nil
-
-for _, Value: any in pairs(getgc(true)) do
+for _, Value in pairs(getgc(true)) do
     if type(Value) == "table" then
         if rawget(Value, "Anti") and rawget(Value, "Remote") then
-            Adonis = Value
+            AdonisClient = Value
             break
         end
     end
 end
 
-if Adonis then
-    warn("Found client. So sigma")
+if AdonisClient then
+    local LocalPlayer = game:GetService("Players").LocalPlayer
+    local LogService = game:GetService("LogService")
 
-    local Player: any = game:GetService("Players").LocalPlayer
+    local function MakeCClosure(Func)
+        return newcclosure(function(...)
+            return Func(...)
+        end)
+    end
 
-    local function Hook(Func: any, Label: string)
-        if not Func then return end
-        local Old: any
-        Old = hookfunction(Func, newcclosure(function(...)
-            warn("Blocked " .. Label)
-            return
+    local function HookFunc(Original, Hook)
+        if not Original then return end
+        local Old
+        Old = hookfunction(Original, MakeCClosure(function(...)
+            return Hook(Old, ...)
+        end))
+        return Old
+    end
+
+    local function HookMeta(Object, Metamethod, Hook)
+        return hookmetamethod(Object, Metamethod, MakeCClosure(function(...)
+            return Hook(...)
         end))
     end
 
-    Hook(Adonis.Disconnect, "Disconnect")
-    Hook(Adonis.Kill, "Kill")
+    HookFunc(AdonisClient.Disconnect, function(Original, Info)
+        warn("Blocked Disconnect: " .. tostring(Info))
+    end)
 
-    local Send: any = Adonis.Remote.Send
-    if Send then
-        local OldSend: any
-        OldSend = hookfunction(Send, newcclosure(function(Command: any, ...)
-            if Command == "Detected" then
-                return
-            end
-            return OldSend(Command, ...)
-        end))
-    end
+    HookFunc(AdonisClient.Kill, function(Original, Info)
+        warn("Blocked Kill: " .. tostring(Info))
+    end)
 
-    local Fire: any = Adonis.Remote.Fire
-    if Fire then
-        local OldFire: any
-        OldFire = hookfunction(Fire, newcclosure(function(Data: any, ...)
-            local Decrypt: any = Adonis.Remote.NewDecrypt
-            local Key: any = Adonis.Core.Key
-            if Decrypt and Key and type(Data) == "string" then
-                local Ok: any, Name: any = pcall(Decrypt, Data, Key)
-                if Ok and (Name == "Detected" or Name == "BadMemes") then
-                    return
-                end
-            end
-            return OldFire(Data, ...)
-        end))
-    end
-
-    local Kick: any = Player.Kick
-    local OldKick: any
-    OldKick = hookfunction(Kick, newcclosure(function(Self: any, ...)
-        if Self == Player then
+    HookFunc(LocalPlayer.Kick, function(Original, Self, ...)
+        if Self == LocalPlayer then
+            warn("Blocked self-kick")
             return
         end
-        return OldKick(Self, ...)
-    end))
+        return Original(Self, ...)
+    end)
 
-    warn("Active")
+    HookFunc(AdonisClient.Remote.Send, function(Original, Command, ...)
+        if Command == "Detected" then
+            warn("Blocked Remote.Send 'Detected' command")
+            return
+        end
+        return Original(Command, ...)
+    end)
+
+    HookFunc(AdonisClient.Remote.Fire, function(Original, Data, ...)
+        local Decrypt = AdonisClient.Remote.NewDecrypt
+        local Key = AdonisClient.Core.Key
+        if Decrypt and Key and type(Data) == "string" then
+            local Success, Name = pcall(Decrypt, Data, Key)
+            if Success and (Name == "Detected" or Name == "BadMemes") then
+                warn("Blocked Remote.Fire '" .. Name .. "' command")
+                return
+            end
+        end
+        return Original(Data, ...)
+    end)
+
+    local OriginalIndex = HookMeta(game, "__index", function(Self, Key)
+        if tostring(Key) == "____________" then
+            error("attempt to index nil with '____________'")
+        end
+        return OriginalIndex(Self, Key)
+    end)
+
+    local OriginalNewindex = HookMeta(game, "__newindex", function(Self, Key, Value)
+        if tostring(Key) == "____________" then
+            error("attempt to index nil with '____________'")
+        end
+        return OriginalNewindex(Self, Key, Value)
+    end)
+
+    local OriginalNamecall = HookMeta(game, "__namecall", function(...)
+        local Method = getnamecallmethod()
+        if Method == "____________" then
+            error("____________ is not a valid member of Instance \"game\"")
+        end
+        return OriginalNamecall(...)
+    end)
+
+    HookFunc(LogService.GetLogHistory, function(Original, Self)
+        return Original(Self)
+    end)
+
+    HookFunc(AdonisClient.Core.RemoteEvent.Object.FireServer, function(Original, Self, ...)
+        return Original(Self, ...)
+    end)
+
+    HookFunc(AdonisClient.Core.RemoteEvent.Function.InvokeServer, function(Original, Self, ...)
+        return Original(Self, ...)
+    end)
+
+    HookFunc(AdonisClient.Functions.Crash, function()
+        warn("Blocked Adonis.Functions.Crash")
+    end)
+
+    HookFunc(AdonisClient.Functions.HardCrash, function()
+        warn("Blocked Adonis.Functions.HardCrash")
+    end)
+
+    HookFunc(AdonisClient.Functions.GPUCrash, function()
+        warn("Blocked Adonis.Functions.GPUCrash")
+    end)
+
+    HookFunc(AdonisClient.Functions.RAMCrash, function()
+        warn("Blocked Adonis.Functions.RAMCrash")
+    end)
+
+    warn("Adonis Bypass Active")
 end

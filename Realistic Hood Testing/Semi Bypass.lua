@@ -1,5 +1,6 @@
 --// Credit : Tarheel943
 --// put in autoexec (seliware not recommended, use potassium)
+--// Use adonis bypass with this
 
 local Players: Players = game:GetService("Players")
 local RunService: RunService = game:GetService("RunService")

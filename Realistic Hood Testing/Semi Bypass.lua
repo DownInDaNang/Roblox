@@ -407,7 +407,7 @@ task.defer(function()
 	end)
 end)
 
---// 17) Neutralize the PLAYERS descendant added flight check
+--// 17) 
 
 task.spawn(function()
 	local playersFolder: Instance? = workspace:FindFirstChild("PLAYERS")

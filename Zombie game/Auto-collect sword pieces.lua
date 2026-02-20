@@ -1,0 +1,5 @@
+local swordCollectPieces = workspace.Interaction.Ironsword.SwordCollectPieces
+
+fireclickdetector(swordCollectPieces.IronOre1.ClickDetector)
+fireclickdetector(swordCollectPieces.IronOre2.ClickDetector)
+fireclickdetector(swordCollectPieces.StickCollect.ClickDetector)
